@@ -1,4 +1,4 @@
-package org.example.lab2.solution.experiment;
+package org.example.experiment;
 
 /**
  * Измеряет скорость выполнения запроса к БД

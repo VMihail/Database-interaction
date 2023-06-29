@@ -1,8 +1,8 @@
-package org.example.lab2.solution.experiment;
+package org.example.experiment;
 
-import org.example.lab2.solution.DbInfo;
-import org.example.lab2.solution.service.dao.jdbcDao.EmployeeJdbcDao;
-import org.example.lab2.solution.service.db.jdbc.JdbcConnection;
+import org.example.dao.jdbcDao.EmployeeJdbcDao;
+import org.example.jdbc.JdbcConnection;
+import org.example.utils.DataBaseInfo;
 
 import java.io.Closeable;
 import java.sql.SQLException;
@@ -10,14 +10,20 @@ import java.sql.SQLException;
 /**
  * Релизация эксперимента для Jdbc
  */
-public class JdbcExperiment extends AbstractExperiment implements AutoCloseable {
+public class JdbcExperiment implements Experiment, AutoCloseable {
+  private static final DataBaseInfo info = DataBaseInfo.INSTANCE;
+  private final EmployeeJdbcDao repository;
+  private final long numberOfRecords;
+
   /**
    * Создает эксперимент
    * @param numberOfRecords количество обращений к БД
    * @throws SQLException если пройзошла ошибка на уровне БД
    */
   public JdbcExperiment(long numberOfRecords) throws SQLException {
-    super(new EmployeeJdbcDao(new JdbcConnection(DbInfo.url), DbInfo.employeeTableName), numberOfRecords);
+    this.repository = new EmployeeJdbcDao(new JdbcConnection(info.url, info.userName, info.pass),
+     info.employeesTableName);
+    this.numberOfRecords = numberOfRecords;
   }
 
   /**
@@ -70,5 +76,21 @@ public class JdbcExperiment extends AbstractExperiment implements AutoCloseable 
     } catch (final Exception e) {
       System.out.println("Failed to close " + e.getMessage());
     }
+  }
+
+  /**
+   * Скрость закгрузки данных
+   */
+  @Override
+  public long getUploadTime() {
+    return ExperimentMethods.getUploadTime(repository, numberOfRecords);
+  }
+
+  /**
+   * Скорость получения данных
+   */
+  @Override
+  public long getDataAcquisitionTime() {
+    return ExperimentMethods.getDataAcquisitionTime(repository);
   }
 }

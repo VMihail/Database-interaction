@@ -1,9 +1,7 @@
-package org.example.lab2.solution.experiment;
+package org.example.experiment;
 
-import org.example.lab2.solution.entities.Employee;
-import org.example.lab2.solution.service.dao.Dao;
-
-import java.util.Date;
+import org.example.dao.Dao;
+import org.example.entities.Employee;
 
 /**
  * Общие детали реализации для всех экспериментов
@@ -30,12 +28,7 @@ public class AbstractExperiment implements Experiment {
    */
   @Override
   public long getUploadTime() {
-    clear();
-    long startTime = System.currentTimeMillis();
-    for (long i = 1; i <= numberOfRecords; i++) {
-      repository.save(new Employee(i, "Test" + i, new Date()));
-    }
-    return System.currentTimeMillis() - startTime;
+    return ExperimentMethods.getUploadTime(repository, numberOfRecords);
   }
 
   /**
@@ -43,13 +36,6 @@ public class AbstractExperiment implements Experiment {
    */
   @Override
   public long getDataAcquisitionTime() {
-    long startTime = System.currentTimeMillis();
-    repository.getAll();
-    return System.currentTimeMillis() - startTime;
-  }
-
-  /** Очищает таблицу */
-  public void clear() {
-    repository.deleteAll();
+    return ExperimentMethods.getDataAcquisitionTime(repository);
   }
 }

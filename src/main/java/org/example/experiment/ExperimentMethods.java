@@ -5,7 +5,7 @@ import org.example.entities.Employee;
 
 import java.sql.Date;
 
-public final class AbstractExperimentMethods {
+public final class ExperimentMethods {
   public static long getUploadTime(final Dao<Employee> repository, final long numberOfRecords) {
     clear(repository);
     final long startTime = System.currentTimeMillis();

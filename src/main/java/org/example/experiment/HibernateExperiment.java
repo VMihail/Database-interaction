@@ -1,6 +1,6 @@
-package org.example.lab2.solution.experiment;
+package org.example.experiment;
 
-import org.example.lab2.solution.service.dao.hibernateDao.EmployeeHibernateDao;
+import org.example.dao.hibernateDao.EmployeeHibernateDao;
 
 /**
  * Релизация эксперимента для Hibernate

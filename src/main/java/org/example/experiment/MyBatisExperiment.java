@@ -1,7 +1,6 @@
-package org.example.lab2.solution.experiment;
+package org.example.experiment;
 
-import org.example.lab2.solution.DbInfo;
-import org.example.lab2.solution.service.dao.myBatisDao.MyBatisEmployeeDao;
+import org.example.dao.myBatisDao.MyBatisEmployeeDao;
 
 /**
  * Релизация эксперимента для Jdbc
@@ -12,6 +11,6 @@ public class MyBatisExperiment extends AbstractExperiment {
    * @param numberOfRecords количество обращений к БД
    */
   public MyBatisExperiment(long numberOfRecords) {
-    super(new MyBatisEmployeeDao(DbInfo.driver, DbInfo.url), numberOfRecords);
+    super(new MyBatisEmployeeDao(), numberOfRecords);
   }
 }
