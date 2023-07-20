@@ -1,4 +1,8 @@
-package org.example.experiment;
+package org.example;
+
+import org.example.experiment.HibernateExperiment;
+import org.example.experiment.JdbcExperiment;
+import org.example.experiment.MyBatisExperiment;
 
 import java.sql.SQLException;
 

@@ -22,6 +22,15 @@ dependencies {
     implementation("org.hibernate:hibernate-core:6.2.5.Final")
     // https://mvnrepository.com/artifact/org.mybatis/mybatis
     implementation("org.mybatis:mybatis:3.5.13")
+
+    // https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-web
+    implementation("org.springframework.boot:spring-boot-starter-web:3.1.1")
+    // https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-data-jpa
+    implementation("org.springframework.boot:spring-boot-starter-data-jpa:3.1.1")
+    // https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-actuator
+    implementation("org.springframework.boot:spring-boot-starter-actuator:3.1.1")
+    // https://mvnrepository.com/artifact/org.springframework.data/spring-data-jpa
+    implementation("org.springframework.data:spring-data-jpa:3.1.1")
 }
 
 tasks.getByName<Test>("test") {

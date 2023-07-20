@@ -1,14 +1,14 @@
 create table if not exists Employees (
-                                         id bigint not null primary key,
-                                         name varchar(100),
-                                         DOB date
+    id serial primary key not null,
+    name varchar(100) not null unique,
+    DOB date
 );
 
 create table if not exists Problems (
-                                        id bigint not null primary key,
-                                        name varchar(500),
-                                        deadline date,
-                                        description varchar(1000),
-                                        type varchar(1000),
-                                        employeeId bigint references Employees(id)
+    id serial primary key not null,
+    name varchar(100) not null,
+    deadline date not null,
+    description varchar(255),
+    type varchar(255),
+    employeeId serial not null, foreign key (employeeId) references Employees(id)
 );
